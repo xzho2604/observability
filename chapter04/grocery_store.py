@@ -1,6 +1,6 @@
 import requests
 from flask import Flask, request
-from opentelemetry import context, trace
+from opentelemetry import context
 from opentelemetry.propagate import extract, inject, set_global_textmap
 from opentelemetry.propagators.b3 import B3MultiFormat
 from opentelemetry.propagators.composite import CompositePropagator
@@ -52,4 +52,4 @@ def products():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

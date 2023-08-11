@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-import requests
 
+import requests
 from opentelemetry import trace
 from opentelemetry.propagate import inject
-from opentelemetry.semconv.trace import HttpFlavorValues, SpanAttributes
+from opentelemetry.semconv.trace import SpanAttributes, HttpFlavorValues
 from opentelemetry.trace import Status, StatusCode
 
 from common import configure_tracer
@@ -15,27 +15,27 @@ tracer = configure_tracer("shopper", "0.1.2")
 def browse():
     print("visiting the grocery store")
     with tracer.start_as_current_span(
-        "web request", kind=trace.SpanKind.CLIENT, record_exception=False
+        "web request",
+        kind=trace.SpanKind.CLIENT,
+        record_exception=False,
+        set_status_on_exception=True,
     ) as span:
-        url = "http://localhost:5000/products"
         span.set_attributes(
             {
                 SpanAttributes.HTTP_METHOD: "GET",
                 SpanAttributes.HTTP_FLAVOR: HttpFlavorValues.HTTP_1_1.value,
-                SpanAttributes.HTTP_URL: url,
+                SpanAttributes.HTTP_URL: "http://localhost:5000",
                 SpanAttributes.NET_PEER_IP: "127.0.0.1",
             }
         )
+
         headers = {}
         inject(headers)
         span.add_event("about to send a request")
+
+        url = "http://localhostdj:5000"
         resp = requests.get(url, headers=headers)
-        if resp:
-            span.set_status(Status(StatusCode.OK))
-        else:
-            span.set_status(
-                Status(StatusCode.ERROR, "status code: {}".format(resp.status_code))
-            )
+
         span.add_event(
             "request sent",
             attributes={"url": url},
