@@ -1,3 +1,35 @@
+
+# Mac OS
 .DS_Store
-__pycache__
-cloud_native_observability
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Python
+*.pyc
+*.pyo
+*.egg-info
+*.dist-info
+*.egg
+__pycache__/
+*.log
+*.sqlite3
+
+# Virtual Environments
+venv/
+*.venv/
+.env/
+*.env/
+
+# Editors
+# PyCharm
+.idea/
+# Jupyter
+.ipynb_checkpoints/
+
+# Other common tools and environments
+*.log
+*.sqlite3
+
