@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import requests
 import time
 
+import requests
 from opentelemetry import trace
 from opentelemetry.propagate import inject
 from opentelemetry.semconv.trace import HttpFlavorValues, SpanAttributes
@@ -9,7 +9,6 @@ from opentelemetry.trace import Status, StatusCode
 
 from common import configure_meter, configure_tracer, start_recording_memory_metrics
 from local_machine_resource_detector import LocalMachineResourceDetector
-
 
 tracer = configure_tracer("shopper", "0.1.2")
 meter = configure_meter("shopper", "0.1.2")
@@ -30,7 +29,7 @@ upstream_duration_histo = meter.create_histogram(
 def browse():
     print("visiting the grocery store")
     with tracer.start_as_current_span(
-        "web request", kind=trace.SpanKind.CLIENT, record_exception=False
+            "web request", kind=trace.SpanKind.CLIENT, record_exception=False
     ) as span:
         url = "http://localhost:5000/products"
         span.set_attributes(

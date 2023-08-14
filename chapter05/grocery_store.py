@@ -1,6 +1,6 @@
-import requests
 import time
 
+import requests
 from flask import Flask, request
 from opentelemetry import context, trace
 from opentelemetry.propagate import extract, inject, set_global_textmap
@@ -9,9 +9,9 @@ from opentelemetry.propagators.composite import CompositePropagator
 from opentelemetry.semconv.trace import HttpFlavorValues, SpanAttributes
 from opentelemetry.trace import SpanKind
 from opentelemetry.trace.propagation import tracecontext
+
 from common import configure_meter, configure_tracer, set_span_attributes_from_flask
 from common import start_recording_memory_metrics
-
 
 tracer = configure_tracer("grocery-store", "0.1.2")
 meter = configure_meter("grocery-store", "0.1.2")

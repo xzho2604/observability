@@ -1,9 +1,11 @@
 import time
+
 from flask import Flask, jsonify, request
 from opentelemetry import context
 from opentelemetry.propagate import extract, set_global_textmap
 from opentelemetry.propagators.b3 import B3MultiFormat
 from opentelemetry.trace import SpanKind
+
 from common import (
     configure_meter,
     configure_tracer,

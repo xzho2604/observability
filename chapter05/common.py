@@ -1,19 +1,21 @@
 import resource
+
 from flask import request
 from opentelemetry import trace
-from opentelemetry.sdk.resources import Resource
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
-from opentelemetry.semconv.resource import ResourceAttributes
-from opentelemetry.semconv.trace import SpanAttributes
-from local_machine_resource_detector import LocalMachineResourceDetector
 from opentelemetry._metrics import get_meter_provider, set_meter_provider
+from opentelemetry._metrics.measurement import Measurement
 from opentelemetry.sdk._metrics import MeterProvider
 from opentelemetry.sdk._metrics.export import (
     ConsoleMetricExporter,
     PeriodicExportingMetricReader,
 )
-from opentelemetry._metrics.measurement import Measurement
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
+from opentelemetry.semconv.resource import ResourceAttributes
+from opentelemetry.semconv.trace import SpanAttributes
+
+from local_machine_resource_detector import LocalMachineResourceDetector
 
 
 def configure_meter(name, version):

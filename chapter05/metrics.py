@@ -1,16 +1,17 @@
+import resource
+import time
+
 from opentelemetry._metrics import get_meter_provider, set_meter_provider
+from opentelemetry._metrics.instrument import Counter
+from opentelemetry._metrics.measurement import Measurement
 from opentelemetry.sdk._metrics import MeterProvider
-from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk._metrics.aggregation import LastValueAggregation
 from opentelemetry.sdk._metrics.export import (
     ConsoleMetricExporter,
     PeriodicExportingMetricReader,
 )
-import time
-from opentelemetry._metrics.measurement import Measurement
-import resource
 from opentelemetry.sdk._metrics.view import View
-from opentelemetry._metrics.instrument import Counter
-from opentelemetry.sdk._metrics.aggregation import LastValueAggregation
+from opentelemetry.sdk.resources import Resource
 
 
 def async_gauge_callback():

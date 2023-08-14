@@ -1,5 +1,7 @@
 import socket
+
 from opentelemetry.sdk.resources import Resource, ResourceDetector
+
 
 class LocalMachineResourceDetector(ResourceDetector):
     def detect(self):
