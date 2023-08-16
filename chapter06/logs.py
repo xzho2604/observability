@@ -37,4 +37,3 @@ if __name__ == "__main__":
     handler = OTLPHandler()
     logger.addHandler(handler)
     logger.info("second log line", extra={"key1": "val1"})
-
